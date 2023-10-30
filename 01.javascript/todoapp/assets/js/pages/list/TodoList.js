@@ -1,9 +1,7 @@
 // 할일 목록
-import Header from "../../layout/Header.js";
-import Footer from "../../layout/Footer.js";
-import TodoRegist from "../regist/TodoRegist.js";
 import { linkTo } from "../../Router.js";
-import TodoUpdate from "../update/TodoUpdate.js";
+import Footer from "../../layout/Footer.js";
+import Header from "../../layout/Header.js";
 
 const TodoList = async function () {
   axios.defaults.baseURL = "http://localhost:33088/api/todolist";
