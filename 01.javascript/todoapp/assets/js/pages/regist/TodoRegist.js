@@ -40,18 +40,10 @@ const TodoRegist = function () {
         title: title,
         content: content,
       })
-      .then((response) => {
-        // 서버로부터 받은 응답 데이터를 처리할 수 있음
-        console.log("서버 응답:", response.data);
-      })
       .catch((error) => {
         // 오류 처리
         console.error("오류 발생:", error);
       });
-
-    // 예시로 입력된 제목과 내용을 출력
-    console.log("제목:", title);
-    console.log("내용:", content);
   });
 
   // 요소를 content에 추가
