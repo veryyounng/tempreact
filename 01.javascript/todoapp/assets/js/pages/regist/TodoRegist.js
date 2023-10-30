@@ -32,26 +32,20 @@ const TodoRegist = function() {
     const title = titleInput.value.trim();
     const content = contentInput.value.trim();
 
+
     // 입력된 제목과 내용을 이용하여 할일을 생성하거나 서버로 전송하는 로직을 추가할 수 있음
-    fetch(`http://localhost:33088/api/todolist/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
+  axios.post(`http://localhost:33088/api/todolist/`, {
       title: title,
       content: content
     })
-  })
-  .then(response => response.json())
-  .then(data => {
-    // 서버로부터 받은 응답 데이터를 처리할 수 있음
-    console.log('서버 응답:', data);
-  })
-  .catch(error => {
-    // 오류 처리
-    console.error('오류 발생:', error);
-  });
+    .then(response => {
+      // 서버로부터 받은 응답 데이터를 처리할 수 있음
+      console.log('서버 응답:', response.data);
+    })
+    .catch(error => {
+      // 오류 처리
+      console.error('오류 발생:', error);
+    });
 
 
     // 예시로 입력된 제목과 내용을 출력
