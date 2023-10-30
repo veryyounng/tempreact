@@ -5,7 +5,6 @@ import TodoUpdate from "./pages/update/TodoUpdate.js";
 
 async function getPage() {
   let page;
-  console.log(location);
   switch (location.pathname) {
     case "/":
       page = await TodoList();
