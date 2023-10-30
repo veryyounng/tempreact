@@ -3,11 +3,12 @@ import Header from "../../layout/Header.js";
 import Footer from "../../layout/Footer.js";
 import TodoRegist from "../regist/TodoRegist.js";
 import TodoInfo from "../info/TodoInfo.js";
+import TodoUpdate from "../update/TodoUpdate.js";
 
 const TodoList = async function () {
+  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const page = document.createElement("div");
   page.setAttribute("id", "page");
-  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const content = document.createElement("div");
   content.setAttribute("id", "content");
   let response;
@@ -18,6 +19,8 @@ const TodoList = async function () {
     response.data?.items.forEach((item) => {
       const li = document.createElement("li");
       const todoInfoLink = document.createElement("a");
+      const editEl = document.createElement("button");
+      editEl.innerText = "수정";
       const deleteEl = document.createElement("button");
       deleteEl.innerText = "삭제";
       todoInfoLink.setAttribute("href", `info?_id=${item._id}`);
@@ -26,12 +29,16 @@ const TodoList = async function () {
       checkTodo.checked = item.done;
       const title = document.createTextNode(item.title);
 
+      editEl.addEventListener("click", async function () {
+        const editPage = await TodoUpdate({ _id: item._id });
+        document.querySelector("#page").replaceWith(editPage);
+      });
+
       deleteEl.addEventListener("click", async function () {
         try {
           const body = { id: item._id };
           const response = await axios.delete(`/${item._id}`, body);
           const data = response.data;
-          console.log(data);
           li.remove();
         } catch (error) {}
       });
@@ -59,9 +66,10 @@ const TodoList = async function () {
       });
 
       todoInfoLink.appendChild(title);
-      li.appendChild(deleteEl);
       li.appendChild(todoInfoLink);
       li.appendChild(checkTodo);
+      li.appendChild(editEl);
+      li.appendChild(deleteEl);
       ul.appendChild(li);
     });
     content.appendChild(ul);
