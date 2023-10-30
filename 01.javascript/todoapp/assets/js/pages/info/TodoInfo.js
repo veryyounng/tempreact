@@ -2,9 +2,16 @@
 import Header from "../../layout/Header.js";
 import Footer from "../../layout/Footer.js";
 
-const TodoInfo = async function ({ _id } = {}) {
+const TodoInfo = async function () {
+  const params = new URLSearchParams(location.search);
+  const _id = params.get("_id");
+
+  const todoMainLink = document.createElement("a");
+  todoMainLink.setAttribute("href", "/");
+  todoMainLink.appendChild(document.createTextNode(`뒤로가기`));
+
   try {
-    const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
+    const response = await axios(`/${_id}`);
     const data = response.data;
     const todoInfo = data.item;
     const todoTitle = todoInfo.title;
@@ -28,7 +35,7 @@ const TodoInfo = async function ({ _id } = {}) {
       { label: "수정일", value: todoUpdated },
     ];
 
-    attributes.forEach((attribute, i) => {
+    attributes.forEach((attribute) => {
       const listItem = document.createElement("li");
       listItem.classList.add(`todoItem`);
       const text = document.createTextNode(
@@ -38,9 +45,9 @@ const TodoInfo = async function ({ _id } = {}) {
       list.appendChild(listItem);
     });
 
-    const text = document.createTextNode(`_id=${_id} 상세 조회 화면`);
+    const text = document.createTextNode(` 상세 조회 화면`);
     content.appendChild(text);
-
+    page.appendChild(todoMainLink);
     page.appendChild(Header("TODO App 상세 조회"));
     page.appendChild(content);
     content.appendChild(list);

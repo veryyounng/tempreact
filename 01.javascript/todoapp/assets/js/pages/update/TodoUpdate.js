@@ -4,10 +4,17 @@ import Footer from "../../layout/Footer.js";
 import TodoList from "../list/TodoList.js";
 
 // 할일 수정
-const TodoUpdate = async function ({ _id } = {}) {
-  // axios.defaults.baseURL = "http://localhost:33088/api/todolist";
+const TodoUpdate = async function () {
+  const params = new URLSearchParams(location.search);
+  const _id = params.get("_id");
+
+  const todoMainLink = document.createElement("a");
+  todoMainLink.setAttribute("href", "/");
+  todoMainLink.appendChild(document.createTextNode(`뒤로가기`));
+
   try {
     const response = await axios(`/${_id}`);
+
     if (response.data.ok) {
       const data = await response.data;
       const { title, content, done } = data.item;
@@ -36,6 +43,8 @@ const TodoUpdate = async function ({ _id } = {}) {
 
       const editEl = document.createElement("button");
       editEl.innerText = "수정 완료";
+
+      page.appendChild(todoMainLink);
       page.appendChild(Header(`${title} 수정`));
       page.appendChild(contentBox);
       contentBox.appendChild(list);
@@ -52,7 +61,6 @@ const TodoUpdate = async function ({ _id } = {}) {
             content: contentValue ? contentValue : content,
             done: done,
           };
-          console.log(body);
           const response = await axios.patch(`/${_id}`, body);
 
           const data = response.data;
