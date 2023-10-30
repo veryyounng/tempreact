@@ -7,40 +7,59 @@ import TodoInfo from "../info/TodoInfo.js";
 const TodoList = async function () {
   const page = document.createElement("div");
   page.setAttribute("id", "page");
-
+  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const content = document.createElement("div");
   content.setAttribute("id", "content");
   let response;
+  response = await axios();
   try {
-    response = await axios("http://localhost:33088/api/todolist");
-
     const ul = document.createElement("ul");
     ul.setAttribute("class", "todolist");
     response.data?.items.forEach((item) => {
       const li = document.createElement("li");
       const todoInfoLink = document.createElement("a");
+      const deleteEl = document.createElement("button");
+      deleteEl.innerText = "삭제";
       todoInfoLink.setAttribute("href", `info?_id=${item._id}`);
       const checkTodo = document.createElement("input");
       checkTodo.setAttribute("type", "checkbox");
       checkTodo.checked = item.done;
       const title = document.createTextNode(item.title);
 
+      deleteEl.addEventListener("click", async function () {
+        try {
+          const body = { id: item._id };
+          const response = await axios.delete(`/${item._id}`, body);
+          const data = response.data;
+          console.log(data);
+          li.remove();
+        } catch (error) {}
+      });
+
       todoInfoLink.addEventListener("click", async function (event) {
-        // 브라우저의 기본 동작 취소(<a> 태그 동작 안하도록)
         event.preventDefault();
         const infoPage = await TodoInfo({ _id: item._id });
         document.querySelector("#page").replaceWith(infoPage);
       });
 
       checkTodo.addEventListener("click", async function () {
-        // await EditDone({
-        //   _id: item._id,
-        //   item: { title: item.title, content: item.content, done: !item.done },
-        // });
-        console.log("click");
+        try {
+          const body = {
+            title: item.title,
+            content: item.content,
+            done: !item.done,
+          };
+
+          const response = await axios.patch(`/${item._id}`, body);
+          const data = response.data;
+          console.log(data);
+        } catch (error) {
+          console.error(error);
+        }
       });
 
       todoInfoLink.appendChild(title);
+      li.appendChild(deleteEl);
       li.appendChild(todoInfoLink);
       li.appendChild(checkTodo);
       ul.appendChild(li);
