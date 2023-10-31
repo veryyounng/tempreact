@@ -1,5 +1,7 @@
 # 🦁멋쟁이 사자처럼 Front-End School ➕Plus 1기: 미니 프로젝트(TODO App)
 
+ <img width="full" src="https://github.com/pearlKinn/webcafe/assets/83470333/f4028e25-dad3-4ab7-941a-a19686bfc8dd" />
+
 🗓️ 기획 기간 : 2023.10.29 ~ 2023.10.30
 
 🗓️ 개발 기간 : 2023.10.30 ~ 2023.10.31
