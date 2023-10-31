@@ -1,6 +1,8 @@
 import Header from "../../layout/Header.js";
 import Footer from "../../layout/Footer.js";
 
+
+
 const TodoRegist = function () {
   const todoMainLink = document.createElement("a");
   todoMainLink.setAttribute("href", "/");
@@ -11,28 +13,35 @@ const TodoRegist = function () {
   const page = document.createElement("div");
   page.setAttribute("id", "page");
 
-  const content = document.createElement("div");
+  const content = document.createElement('div');
+  content.classList.add('inputWrapper');
+ 
 
   // 제목 입력 필드
-  const titleLabel = document.createElement("label");
-  titleLabel.textContent = "제목: ";
-  const titleInput = document.createElement("input");
-  titleInput.setAttribute("type", "text");
-  titleInput.setAttribute("id", "title-input");
+  
+  const titleLabel = document.createElement('label');
+  titleLabel.textContent = '제목: ';
+  const titleInput = document.createElement('input');
+  titleInput.setAttribute('type', 'text');
+  titleInput.setAttribute('id', 'title-input');
+  titleInput.classList.add('input-field');
   titleLabel.appendChild(titleInput);
 
   // 내용 입력 필드
-  const contentLabel = document.createElement("label");
-  contentLabel.textContent = "내용: ";
-  const contentInput = document.createElement("input");
-  contentInput.setAttribute("type", "text");
-  contentInput.setAttribute("id", "content-input");
+  const contentLabel = document.createElement('label');
+  contentLabel.textContent = '내용: ';
+  const contentInput = document.createElement('input');
+  contentInput.setAttribute('type', 'text');
+  contentInput.setAttribute('id', 'content-input');
+  contentInput.classList.add('input-field');
   contentLabel.appendChild(contentInput);
 
   // 등록 버튼
-  const submitButton = document.createElement("button");
-  submitButton.textContent = "등록";
-  submitButton.addEventListener("click", function () {
+  const submitButton = document.createElement('button');
+  submitButton.classList.add('registration');
+  submitButton.textContent = '등록';
+  submitButton.addEventListener('click', function() {
+    submitButton.setAttribute("href", "/");
     const title = titleInput.value.trim();
     const content = contentInput.value.trim();
 
@@ -41,6 +50,10 @@ const TodoRegist = function () {
       .post(`http://localhost:33088/api/todolist/`, {
         title: title,
         content: content,
+      })
+      .then(response => {
+        // 성공적으로 등록한 후에 메인 페이지로 이동
+        window.location.href = '/'; // 메인 페이지의 URL로 리디렉션
       })
       .catch((error) => {
         // 오류 처리

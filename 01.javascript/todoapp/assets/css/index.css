@@ -10,6 +10,85 @@ h1 {
   width: 300px;
   padding-top: 20px;
 }
+
+#page{
+position: relative;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.inputWrapper{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 7%;
+}
+
+.input-field {
+  width: 70%;
+  height: 50px;
+  border: 1px solid #99ccff;
+  border-radius: 30px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.registration{
+  width: 5%;
+  height: 40px;
+  border: 1px solid #6382d8;
+  background: #6382d8;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  white-space: nowrap;
+  min-width: 50px;
+}
+
+.edit{
+  width: 5%;
+  height: 40px;
+  border: 1px solid #6382d8;
+  background: #6382d8;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+.buttonWrapper{
+  align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+
+}
+
+
+.customInput{
+  list-style: none;
+  width: 70%;
+  height: 50px;
+  border: 1px solid #99ccff;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+
+.ulItem {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listItem {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
 .backspace {
   display: block;
   text-decoration: none;
@@ -17,11 +96,7 @@ h1 {
   font-size: xx-large;
   position: absolute;
 }
-.todoInfoWrapper {
-  position: relative;
-  margin: 0 auto;
-  max-width: 600px;
-}
+
 .contentWrapper {
   padding: 50px 10px;
 }
