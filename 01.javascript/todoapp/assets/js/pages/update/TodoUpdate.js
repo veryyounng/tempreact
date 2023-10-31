@@ -10,7 +10,9 @@ const TodoUpdate = async function () {
 
   const todoMainLink = document.createElement("a");
   todoMainLink.setAttribute("href", "/");
-  todoMainLink.appendChild(document.createTextNode(`뒤로가기`));
+  todoMainLink.setAttribute("title", "뒤로가기");
+  todoMainLink.appendChild(document.createTextNode(`<`));
+  todoMainLink.classList.add("backspace");
 
   try {
     const response = await axios(`/${_id}`);
@@ -78,6 +80,7 @@ const TodoUpdate = async function () {
           const data = response.data;
           const ListPage = await TodoList();
           data && document.querySelector("#page").replaceWith(ListPage);
+          window.location.href = "/";
         } catch (error) {
           console.error("error");
         }

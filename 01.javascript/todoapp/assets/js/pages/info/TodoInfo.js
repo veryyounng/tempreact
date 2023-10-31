@@ -8,7 +8,9 @@ const TodoInfo = async function () {
 
   const todoMainLink = document.createElement("a");
   todoMainLink.setAttribute("href", "/");
-  todoMainLink.appendChild(document.createTextNode(`뒤로가기`));
+  todoMainLink.setAttribute("title", "뒤로가기");
+  todoMainLink.appendChild(document.createTextNode(`<`));
+  todoMainLink.classList.add("backspace");
 
   try {
     const response = await axios(`/${_id}`);
@@ -23,7 +25,10 @@ const TodoInfo = async function () {
     const page = document.createElement("div");
     page.setAttribute("id", "page");
     page.classList.add("todoInfoWrapper");
+
     const content = document.createElement("div");
+    content.classList.add("contentWrapper");
+
     const list = document.createElement("ul");
     list.classList.add("todoListWrapper");
 
