@@ -8,13 +8,15 @@ const TodoRegist = function() {
   page.setAttribute('id', 'page');
 
   const content = document.createElement('div');
-
+  content.classList.add('inputWrapper');
   // 제목 입력 필드
+  
   const titleLabel = document.createElement('label');
   titleLabel.textContent = '제목: ';
   const titleInput = document.createElement('input');
   titleInput.setAttribute('type', 'text');
   titleInput.setAttribute('id', 'title-input');
+  titleInput.classList.add('input-field');
   titleLabel.appendChild(titleInput);
   
   // 내용 입력 필드
@@ -23,10 +25,12 @@ const TodoRegist = function() {
   const contentInput = document.createElement('input');
   contentInput.setAttribute('type', 'text');
   contentInput.setAttribute('id', 'content-input');
+  contentInput.classList.add('input-field');
   contentLabel.appendChild(contentInput);
 
   // 등록 버튼
   const submitButton = document.createElement('button');
+  submitButton.classList.add('registration');
   submitButton.textContent = '등록';
   submitButton.addEventListener('click', function() {
     const title = titleInput.value.trim();
