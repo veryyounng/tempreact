@@ -39,6 +39,7 @@ const TodoRegist = function () {
   submitButton.classList.add('registration');
   submitButton.textContent = '등록';
   submitButton.addEventListener('click', function() {
+    submitButton.setAttribute("href", "/");
     const title = titleInput.value.trim();
     const content = contentInput.value.trim();
 
@@ -47,6 +48,10 @@ const TodoRegist = function () {
       .post(`http://localhost:33088/api/todolist/`, {
         title: title,
         content: content,
+      })
+      .then(response => {
+        // 성공적으로 등록한 후에 메인 페이지로 이동
+        window.location.href = '/'; // 메인 페이지의 URL로 리디렉션
       })
       .catch((error) => {
         // 오류 처리

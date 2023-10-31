@@ -21,17 +21,21 @@ const TodoUpdate = async function () {
       const page = document.createElement("div");
       page.setAttribute("id", "page");
       const contentBox = document.createElement("ul");
+      contentBox.classList.add('ulItem');
       const list = document.createElement("li");
+      list.classList.add('listItem');
       const attributes = [
-        { label: "제목", value: title },
-        { label: "내용", value: content },
+        { label: "제목:", value: title },
+        { label: "내용:", value: content },
       ];
+    
 
       attributes.forEach((attribute, idx) => {
         const listItem = document.createElement("li");
         const label = document.createElement("label");
         const input = document.createElement("input");
         input.id = idx;
+        input.classList.add("customInput");
         label.textContent = attribute.label;
 
         input.value = attribute.value;
@@ -41,14 +45,22 @@ const TodoUpdate = async function () {
         list.appendChild(listItem);
       });
 
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("buttonWrapper")
+      wrapper.appendChild(contentBox)
+      
       const editEl = document.createElement("button");
+      wrapper.appendChild(editEl)
+
+      editEl.classList.add('edit');
       editEl.innerText = "수정 완료";
 
       page.appendChild(todoMainLink);
       page.appendChild(Header(`${title} 수정`));
-      page.appendChild(contentBox);
+      // page.appendChild(contentBox);
       contentBox.appendChild(list);
-      page.appendChild(editEl);
+      page.appendChild(wrapper);
+      // page.appendChild(editEl);
       page.appendChild(Footer());
 
       editEl.addEventListener("click", async function () {
