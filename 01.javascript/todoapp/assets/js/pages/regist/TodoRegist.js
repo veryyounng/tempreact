@@ -4,7 +4,9 @@ import Footer from "../../layout/Footer.js";
 const TodoRegist = function () {
   const todoMainLink = document.createElement("a");
   todoMainLink.setAttribute("href", "/");
-  todoMainLink.appendChild(document.createTextNode(`뒤로가기`));
+  todoMainLink.setAttribute("title", "뒤로가기");
+  todoMainLink.appendChild(document.createTextNode(`<`));
+  todoMainLink.classList.add("backspace");
 
   const page = document.createElement("div");
   page.setAttribute("id", "page");
