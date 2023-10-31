@@ -68,6 +68,7 @@ const TodoUpdate = async function () {
           const data = response.data;
           const ListPage = await TodoList();
           data && document.querySelector("#page").replaceWith(ListPage);
+          window.location.href = "/";
         } catch (error) {
           console.error("error");
         }
