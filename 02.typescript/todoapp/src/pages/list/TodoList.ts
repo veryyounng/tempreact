@@ -1,16 +1,19 @@
 // 할일 목록
+import axios from "axios";
 import { linkTo } from "../../Router";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 
 const TodoList = async function () {
-  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
+  // axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const page = document.createElement("div");
   page.setAttribute("id", "page");
-
+  let response;
   const content = document.createElement("div");
   content.setAttribute("id", "content");
-  let response = await axios();
+  response = await axios<TodoListResponse>(
+    "http://localhost:33088/api/todolist"
+  );
 
   try {
     const ul = document.createElement("ul");
@@ -68,7 +71,7 @@ const TodoList = async function () {
 
       todoEditLink.addEventListener("click", async function (e) {
         e.preventDefault();
-        linkTo(todoEditLink.getAttribute("href"));
+        linkTo(todoEditLink.getAttribute("href")!);
       });
 
       deleteEl.addEventListener("click", async function () {
@@ -82,7 +85,7 @@ const TodoList = async function () {
 
       todoInfoLink.addEventListener("click", async function (event) {
         event.preventDefault();
-        linkTo(todoInfoLink.getAttribute("href"));
+        linkTo(todoInfoLink.getAttribute("href")!);
       });
 
       checkTodo.addEventListener("click", async function () {
@@ -128,7 +131,7 @@ const TodoList = async function () {
 
     btnRegistLink.addEventListener("click", (e) => {
       e.preventDefault();
-      linkTo(btnRegistLink.getAttribute("href"));
+      linkTo(btnRegistLink.getAttribute("href")!);
     });
   } catch (err) {
     const error = document.createTextNode("일시적인 오류 발생");
