@@ -1,7 +1,7 @@
 // 할일 등록
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
-import axios from "axios";
+import instance from "../../api/instance";
 
 const TodoInfo = async function (_id: string) {
   const todoMainLink = document.createElement("a");
@@ -14,7 +14,7 @@ const TodoInfo = async function (_id: string) {
   page.setAttribute("id", "page");
   page.classList.add("todoInfoWrapper");
   try {
-    const response = await axios(`/${_id}`);
+    const response = await instance.get(`/${_id}`);
     const data = response.data;
     const todoInfo = data.item;
     const todoTitle = todoInfo.title;
@@ -30,11 +30,11 @@ const TodoInfo = async function (_id: string) {
     list.classList.add("todoListWrapper");
 
     const attributes = [
-      {label: "제목", value: todoTitle},
-      {label: "내용", value: todoContent},
-      {label: "완료 여부", value: isDone ? "완료" : "미완료"},
-      {label: "생성일", value: todoCreated},
-      {label: "수정일", value: todoUpdated},
+      { label: "제목", value: todoTitle },
+      { label: "내용", value: todoContent },
+      { label: "완료 여부", value: isDone ? "완료" : "미완료" },
+      { label: "생성일", value: todoCreated },
+      { label: "수정일", value: todoUpdated },
     ];
 
     attributes.forEach((attribute) => {

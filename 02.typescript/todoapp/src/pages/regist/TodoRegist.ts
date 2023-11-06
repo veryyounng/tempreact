@@ -1,6 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
+import instance from "../../api/instance";
 
 const TodoRegist = function () {
   const todoMainLink = document.createElement("a");
@@ -48,14 +49,11 @@ const TodoRegist = function () {
       content: string;
     }
 
-    axios
-      .post<TodoItem, AxiosResponse<TodoItem>, RegistBody>(
-        `http://localhost:33088/api/todolist/`,
-        {
-          title: title,
-          content: content,
-        }
-      )
+    instance
+      .post<TodoItem, AxiosResponse<TodoItem>, RegistBody>("/", {
+        title: title,
+        content: content,
+      })
       .then(() => {
         // 성공적으로 등록한 후에 메인 페이지로 이동
         window.location.href = "/"; // 메인 페이지의 URL로 리디렉션

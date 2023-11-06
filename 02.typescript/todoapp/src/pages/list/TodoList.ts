@@ -1,17 +1,16 @@
 // 할일 목록
-import axios from "axios";
-import {linkTo} from "../../Router";
+import { linkTo } from "../../Router";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
+import instance from "../../api/instance";
 
 const TodoList = async function () {
-  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const page = document.createElement("div");
   page.setAttribute("id", "page");
   let response;
   const content = document.createElement("div");
   content.setAttribute("id", "content");
-  response = await axios<TodoListResponse>(
+  response = await instance.get<TodoListResponse>(
     "http://localhost:33088/api/todolist"
   );
 
@@ -76,12 +75,10 @@ const TodoList = async function () {
 
       deleteEl.addEventListener("click", async function () {
         try {
-          const body = {id: item._id};
-
-          const response = await axios.delete(`/${item._id}`, {
+          const body = { id: item._id };
+          await instance.delete(`/${item._id}`, {
             data: body,
           });
-          const data = response.data;
           li.remove();
         } catch (error) {}
       });
@@ -99,7 +96,7 @@ const TodoList = async function () {
             done: !item.done,
           };
 
-          await axios.patch(`/${item._id}`, body);
+          await instance.patch(`/${item._id}`, body);
 
           if (!checkTodo.checked) {
             todoInfoLink.classList.remove("doneItemLink");

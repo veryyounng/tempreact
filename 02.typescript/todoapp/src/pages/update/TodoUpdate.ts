@@ -2,7 +2,7 @@
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import TodoList from "../list/TodoList";
-import axios from "axios";
+import instance from "../../api/instance";
 
 // 할일 수정
 const TodoUpdate = async function (_id: string) {
@@ -15,7 +15,7 @@ const TodoUpdate = async function (_id: string) {
   const page = document.createElement("div");
   page.setAttribute("id", "page");
   try {
-    const response = await axios(`/${_id}`);
+    const response = await instance.get(`/${_id}`);
 
     if (response.data.ok) {
       const data = await response.data;
@@ -74,7 +74,7 @@ const TodoUpdate = async function (_id: string) {
             content: contentInput ? contentInput.value : content,
             done: done,
           };
-          const response = await axios.patch(`/${_id}`, body);
+          const response = await instance.patch(`/${_id}`, body);
 
           const data = response.data;
           const ListPage = await TodoList();
