@@ -1,11 +1,11 @@
 // 할일 목록
 import axios from "axios";
-import { linkTo } from "../../Router";
+import {linkTo} from "../../Router";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 
 const TodoList = async function () {
-  // axios.defaults.baseURL = "http://localhost:33088/api/todolist";
+  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const page = document.createElement("div");
   page.setAttribute("id", "page");
   let response;
@@ -76,8 +76,11 @@ const TodoList = async function () {
 
       deleteEl.addEventListener("click", async function () {
         try {
-          const body = { id: item._id };
-          const response = await axios.delete(`/${item._id}`, body);
+          const body = {id: item._id};
+
+          const response = await axios.delete(`/${item._id}`, {
+            data: body,
+          });
           const data = response.data;
           li.remove();
         } catch (error) {}
