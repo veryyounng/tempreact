@@ -47,15 +47,13 @@ const TodoInfo = async function (_id: string) {
       list.appendChild(listItem);
     });
 
-    const text = document.createTextNode(` 상세 조회 화면`);
-    content.appendChild(text);
     page.appendChild(todoMainLink);
     page.appendChild(Header("TODO App 상세 조회"));
     page.appendChild(content);
     content.appendChild(list);
     page.appendChild(Footer());
   } catch (error) {
-    console.error("error", error);
+    console.error(error);
   }
   return page;
 };
