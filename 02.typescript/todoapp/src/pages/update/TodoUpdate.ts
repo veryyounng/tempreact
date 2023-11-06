@@ -5,10 +5,7 @@ import TodoList from "../list/TodoList";
 import axios from "axios";
 
 // 할일 수정
-const TodoUpdate = async function () {
-  const params = new URLSearchParams(location.search);
-  const _id = params.get("_id");
-
+const TodoUpdate = async function (_id: string) {
   const todoMainLink = document.createElement("a");
   todoMainLink.setAttribute("href", "/");
   todoMainLink.setAttribute("title", "뒤로가기");

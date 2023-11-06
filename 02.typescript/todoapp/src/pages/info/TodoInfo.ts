@@ -3,10 +3,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import axios from "axios";
 
-const TodoInfo = async function () {
-  const params = new URLSearchParams(location.search);
-  const _id = params.get("_id");
-
+const TodoInfo = async function (_id: string) {
   const todoMainLink = document.createElement("a");
   todoMainLink.setAttribute("href", "/");
   todoMainLink.setAttribute("title", "뒤로가기");

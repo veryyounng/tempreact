@@ -6,6 +6,9 @@ import Error404 from "./pages/errors/Error404";
 
 async function getPage() {
   let page;
+  const params = new URLSearchParams(location.search);
+  const _id = params.get("_id");
+
   switch (location.pathname) {
     case "/":
       page = await TodoList();
@@ -14,10 +17,10 @@ async function getPage() {
       page = TodoRegist();
       break;
     case "/info":
-      page = await TodoInfo();
+      page = _id ? await TodoInfo(_id) : Error404();
       break;
     case "/edit":
-      page = await TodoUpdate();
+      page = _id ? await TodoUpdate(_id) : Error404();
       break;
     default:
       page = Error404();
