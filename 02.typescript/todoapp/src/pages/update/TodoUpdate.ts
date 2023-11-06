@@ -15,11 +15,10 @@ const TodoUpdate = async function (_id: string) {
   const page = document.createElement("div");
   page.setAttribute("id", "page");
   try {
-    const response = await instance.get(`/${_id}`);
+    const response = await instance.get<TodoResponse>(`/${_id}`);
 
     if (response.data.ok) {
-      const data = await response.data;
-      const { title, content, done } = data.item;
+      const { title, content, done } = response.data.item;
       const contentBox = document.createElement("ul");
       contentBox.classList.add("ulItem");
       const list = document.createElement("li");
@@ -74,9 +73,10 @@ const TodoUpdate = async function (_id: string) {
             content: contentInput ? contentInput.value : content,
             done: done,
           };
-          const response = await instance.patch(`/${_id}`, body);
+          const response = await instance.patch<TodoResponse>(`/${_id}`, body);
 
           const data = response.data;
+          console.log(data.ok.toFixed());
           const ListPage = await TodoList();
           data && document.querySelector("#page")!.replaceWith(ListPage);
           window.location.href = "/";

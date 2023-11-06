@@ -73,12 +73,11 @@ const TodoList = async function () {
 
       deleteEl.addEventListener("click", async function () {
         try {
-          const body = { id: item._id };
-          await instance.delete(`/${item._id}`, {
-            data: body,
-          });
+          await instance.delete<TodoResponse>(`/${item._id}`);
           li.remove();
-        } catch (error) {}
+        } catch (error) {
+          console.error(error);
+        }
       });
 
       todoInfoLink.addEventListener("click", async function (event) {
@@ -94,7 +93,7 @@ const TodoList = async function () {
             done: !item.done,
           };
 
-          await instance.patch(`/${item._id}`, body);
+          await instance.patch<TodoResponse>(`/${item._id}`, body);
 
           if (!checkTodo.checked) {
             todoInfoLink.classList.remove("doneItemLink");

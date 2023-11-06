@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 import instance from "../../api/instance";
@@ -44,13 +43,8 @@ const TodoRegist = function () {
     const content = contentInput.value.trim();
 
     // 입력된 제목과 내용을 이용하여 할일을 생성하거나 서버로 전송하는 로직을 추가할 수 있음
-    interface RegistBody {
-      title: string;
-      content: string;
-    }
-
     instance
-      .post<TodoItem, AxiosResponse<TodoItem>, RegistBody>("/", {
+      .post<TodoResponse>("/", {
         title: title,
         content: content,
       })

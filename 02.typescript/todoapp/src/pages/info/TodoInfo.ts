@@ -14,7 +14,7 @@ const TodoInfo = async function (_id: string) {
   page.setAttribute("id", "page");
   page.classList.add("todoInfoWrapper");
   try {
-    const response = await instance.get(`/${_id}`);
+    const response = await instance.get<TodoResponse>(`/${_id}`);
     const data = response.data;
     const todoInfo = data.item;
     const todoTitle = todoInfo.title;
