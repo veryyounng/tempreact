@@ -7,10 +7,9 @@ import instance from "../../api/instance";
 const TodoList = async function () {
   const page = document.createElement("div");
   page.setAttribute("id", "page");
-  let response;
   const content = document.createElement("div");
   content.setAttribute("id", "content");
-  response = await instance.get<TodoListResponse>("/");
+  const response = await instance.get<TodoListResponse>("/");
 
   try {
     const ul = document.createElement("ul");
@@ -130,9 +129,8 @@ const TodoList = async function () {
       e.preventDefault();
       linkTo(btnRegistLink.getAttribute("href")!);
     });
-  } catch (err) {
-    const error = document.createTextNode("일시적인 오류 발생");
-    content.appendChild(error);
+  } catch (error) {
+    console.error(error);
   }
 
   page.appendChild(Header("TODO App 목록 조회"));
