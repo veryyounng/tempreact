@@ -54,7 +54,7 @@ const TodoRegist = function () {
       })
       .catch((error) => {
         // 오류 처리
-        console.error("오류 발생:", error);
+        console.error(error);
       });
   });
 
