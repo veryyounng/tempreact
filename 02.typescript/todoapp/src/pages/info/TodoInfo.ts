@@ -1,6 +1,7 @@
 // 할일 등록
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
+import axios from "axios";
 
 const TodoInfo = async function () {
   const params = new URLSearchParams(location.search);
@@ -32,11 +33,11 @@ const TodoInfo = async function () {
     list.classList.add("todoListWrapper");
 
     const attributes = [
-      { label: "제목", value: todoTitle },
-      { label: "내용", value: todoContent },
-      { label: "완료 여부", value: isDone ? "완료" : "미완료" },
-      { label: "생성일", value: todoCreated },
-      { label: "수정일", value: todoUpdated },
+      {label: "제목", value: todoTitle},
+      {label: "내용", value: todoContent},
+      {label: "완료 여부", value: isDone ? "완료" : "미완료"},
+      {label: "생성일", value: todoCreated},
+      {label: "수정일", value: todoUpdated},
     ];
 
     attributes.forEach((attribute) => {
