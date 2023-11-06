@@ -5,28 +5,21 @@ import TodoUpdate from "./pages/update/TodoUpdate";
 import Error404 from "./pages/errors/Error404";
 
 async function getPage() {
-  let page;
   const params = new URLSearchParams(location.search);
   const _id = params.get("_id");
 
   switch (location.pathname) {
     case "/":
-      page = await TodoList();
-      break;
+      return await TodoList();
     case "/regist":
-      page = TodoRegist();
-      break;
+      return TodoRegist();
     case "/info":
-      page = _id ? await TodoInfo(_id) : Error404();
-      break;
+      return _id ? await TodoInfo(_id) : Error404();
     case "/edit":
-      page = _id ? await TodoUpdate(_id) : Error404();
-      break;
+      return _id ? await TodoUpdate(_id) : Error404();
     default:
-      page = Error404();
+      return Error404();
   }
-
-  return page;
 }
 
 async function render() {
