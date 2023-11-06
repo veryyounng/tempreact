@@ -2,6 +2,7 @@
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import TodoList from "../list/TodoList";
+import axios from "axios";
 
 // 할일 수정
 const TodoUpdate = async function () {
@@ -35,7 +36,7 @@ const TodoUpdate = async function () {
         const listItem = document.createElement("li");
         const label = document.createElement("label");
         const input = document.createElement("input");
-        input.id = idx;
+        input.id = idx.toString();
         input.classList.add("customInput");
         label.textContent = attribute.label;
 
@@ -58,35 +59,37 @@ const TodoUpdate = async function () {
 
       page.appendChild(todoMainLink);
       page.appendChild(Header(`${title} 수정`));
-      // page.appendChild(contentBox);
       contentBox.appendChild(list);
       page.appendChild(wrapper);
-      // page.appendChild(editEl);
       page.appendChild(Footer());
 
       editEl.addEventListener("click", async function () {
-        const titleValue = document.getElementById("0").value;
-        const contentValue = document.getElementById("1").value;
+        const titleInput = document.getElementById(
+          "0"
+        ) as HTMLInputElement | null;
+        const contentInput = document.getElementById(
+          "1"
+        ) as HTMLInputElement | null;
 
         try {
           const body = {
-            title: titleValue ? titleValue : title,
-            content: contentValue ? contentValue : content,
+            title: titleInput ? titleInput.value : title,
+            content: contentInput ? contentInput.value : content,
             done: done,
           };
           const response = await axios.patch(`/${_id}`, body);
 
           const data = response.data;
           const ListPage = await TodoList();
-          data && document.querySelector("#page").replaceWith(ListPage);
+          data && document.querySelector("#page")!.replaceWith(ListPage);
           window.location.href = "/";
         } catch (error) {
-          console.error("error");
+          console.error(error);
         }
       });
     }
   } catch (error) {
-    console.error("error");
+    console.error(error);
   }
   return page;
 };
