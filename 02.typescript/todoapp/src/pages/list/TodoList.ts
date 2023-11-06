@@ -5,7 +5,7 @@ import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 
 const TodoList = async function () {
-  // axios.defaults.baseURL = "http://localhost:33088/api/todolist";
+  axios.defaults.baseURL = "http://localhost:33088/api/todolist";
   const page = document.createElement("div");
   page.setAttribute("id", "page");
   let response;
