@@ -10,9 +10,7 @@ const TodoList = async function () {
   let response;
   const content = document.createElement("div");
   content.setAttribute("id", "content");
-  response = await instance.get<TodoListResponse>(
-    "http://localhost:33088/api/todolist"
-  );
+  response = await instance.get<TodoListResponse>("/");
 
   try {
     const ul = document.createElement("ul");
