@@ -1,5 +1,6 @@
-import Header from "../../layout/Header";
+import axios, { AxiosResponse } from "axios";
 import Footer from "../../layout/Footer";
+import Header from "../../layout/Header";
 
 const TodoRegist = function () {
   const todoMainLink = document.createElement("a");
@@ -15,7 +16,6 @@ const TodoRegist = function () {
   content.classList.add("inputWrapper");
 
   // 제목 입력 필드
-
   const titleLabel = document.createElement("label");
   titleLabel.textContent = "제목: ";
   const titleInput = document.createElement("input");
@@ -43,12 +43,20 @@ const TodoRegist = function () {
     const content = contentInput.value.trim();
 
     // 입력된 제목과 내용을 이용하여 할일을 생성하거나 서버로 전송하는 로직을 추가할 수 있음
+    interface RegistBody {
+      title: string;
+      content: string;
+    }
+
     axios
-      .post(`http://localhost:33088/api/todolist/`, {
-        title: title,
-        content: content,
-      })
-      .then((response) => {
+      .post<TodoItem, AxiosResponse<TodoItem>, RegistBody>(
+        `http://localhost:33088/api/todolist/`,
+        {
+          title: title,
+          content: content,
+        }
+      )
+      .then(() => {
         // 성공적으로 등록한 후에 메인 페이지로 이동
         window.location.href = "/"; // 메인 페이지의 URL로 리디렉션
       })
