@@ -7,6 +7,7 @@ interface TodoItem {
   updatedAt: string;
 }
 
+// 리스트 조회 response
 interface TodoListResponse {
   ok: number;
   items: TodoItem[];
@@ -18,6 +19,7 @@ interface TodoListResponse {
   };
 }
 
+// 상세조회, 수정, 등록 response
 interface TodoResponse {
   ok: number;
   item: TodoItem;
