@@ -1,8 +1,13 @@
-.registpage {
+.registPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid blue;
   padding-top: 40px;
+}
+
+.registContainer {
+  padding: 50px 0;
+  width: 600px;
 }

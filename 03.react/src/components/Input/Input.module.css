@@ -4,8 +4,9 @@
   border: 1px solid green;
   width: 50px;
 }
+
 .inputField {
-  width: 100px;
+  width: 200px;
   height: 40px;
   border: 2px solid #99ccff;
   border-radius: 30px;
