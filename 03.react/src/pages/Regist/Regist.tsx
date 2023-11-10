@@ -1,13 +1,29 @@
-import { Input } from "@/components/Input/Input";
-import S from "./Regist.module.css";
-export const Regist = (): JSX.Element => {
+import { Header } from "../../layout/Header/Header";
+import Button from "@/components/Button/Button";
+import styles from "./Regist.module.css";
+
+export const Regist = () => {
   return (
-    <>
-      <h1 className={S.registHeader}>TODO App 등록</h1>
-      <div className={S.inputWrapper}>
-        <Input label="제목:" />
-        <Input label="내용:" />
+    <div className={`${styles.registPage}`}>
+      <Header>투두 등록 헤더 테스트</Header>
+      <div className={styles.registContainer}>
+        <input
+          type="text"
+          // value={title}
+          // onChange={(e) => setTitle(e.target.value)}
+          placeholder="제목"
+        />
+        <textarea
+          // value={content}
+          // onChange={(e) => setContent(e.target.value)}
+          placeholder="내용"
+        />
+        <Button
+          option="regist"
+          label="등록"
+          onClick={() => console.log("버튼 클릭")}
+        />
       </div>
-    </>
+    </div>
   );
 };
