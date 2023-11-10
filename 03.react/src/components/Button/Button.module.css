@@ -1,0 +1,40 @@
+/* 위로는 이전 스타일 */
+
+.button {
+  border: none;
+  outline: none;
+  /* all: unset; */
+  width: 70px;
+  height: 40px;
+  color: white;
+  padding: 10px;
+  background-color: #6382d8;
+  border-radius: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+}
+
+.button:focus {
+  border: none;
+  outline: none;
+}
+
+/* 아래로는 불러온 스타일 */
+
+.buttonRegist {
+  /* font-weight: var(--font-semibold); */
+  width: 93px;
+  height: 41px;
+}
+
+.buttonTrash {
+  /* font-weight: var(--font-bold); */
+  width: 100px;
+  height: 50px;
+}
+
+.buttonDefault {
+  width: 100px;
+  height: 70px;
+}
