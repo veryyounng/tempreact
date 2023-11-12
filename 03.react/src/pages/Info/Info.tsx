@@ -25,7 +25,7 @@ export const Info = () => {
   console.log(data);
   return (
     <div id="page" className={styles.todoInfoWrapper}>
-      <Link to="/" className="backBtn">
+      <Link to="/" className={styles.backBtn}>
         &lt;
       </Link>
       <Header>TODO App 상세 조회</Header>
