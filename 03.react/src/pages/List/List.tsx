@@ -74,7 +74,7 @@ export const List = () => {
                     checked={item.done}
                   />
                   <Link
-                    to={`/todoInfo/${item._id}`}
+                    to={`/info/${item._id}`}
                     className={
                       item.done ? styles.doneItemLink : styles.undoItemLink
                     }
