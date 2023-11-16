@@ -34,6 +34,7 @@ export const List = () => {
             done: !item.done,
           };
         }
+        // console.log(item);
         return item;
       });
       return { ...prevData, items: updatedItems };
@@ -56,7 +57,6 @@ export const List = () => {
     };
     deleteItem();
   };
-  console.log(data?.items);
   return (
     <div>
       <Header>TODO App</Header>

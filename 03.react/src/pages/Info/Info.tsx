@@ -12,6 +12,7 @@ export const Info = () => {
     try {
       const response = await instance.get<TodoResponse>(`/${todoId}`);
       setData(response.data);
+      console.log(response)
       return response.data;
     } catch (error) {
       console.error(error);
@@ -20,6 +21,7 @@ export const Info = () => {
 
   useEffect(() => {
     fetchData();
+    
   }, []);
 
   const todoData = {
@@ -29,9 +31,7 @@ export const Info = () => {
     createdAt: data?.item?.createdAt,
     updatedAt: data?.item?.updatedAt,
   };
-  const doneCheck = (i: boolean | undefined) => {
-    return i === false ? "미완료" : "완료";
-  };
+
   return (
     <div id="page" className={styles.todoInfoWrapper}>
       <Link to="/" className={styles.backBtn}>
@@ -53,7 +53,7 @@ export const Info = () => {
             <div>내용: {todoData.content}</div>
           </li>
           <li>
-            <div>완료여부: {doneCheck(todoData.done)}</div>
+            <div>완료여부: {todoData.done? "완료" : "미완료"}</div>
           </li>
           <li>
             <div>등록일: {todoData.createdAt}</div>
